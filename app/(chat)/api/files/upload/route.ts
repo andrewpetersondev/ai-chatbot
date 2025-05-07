@@ -1,3 +1,4 @@
+// todo: replace @vercel/blob with locally hosted mysql database. use promises
 import { put } from '@vercel/blob';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
