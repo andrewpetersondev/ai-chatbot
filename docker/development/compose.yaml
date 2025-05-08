@@ -1,13 +1,13 @@
 services:
   app:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../..
+      dockerfile: ../../Dockerfile
       target: build
-#      cache_from:
-#        - "type=registry,ref=app:build"
-#      cache_to:
-#        - "type=inline"
+    #      cache_from:
+    #        - "type=registry,ref=app:build"
+    #      cache_to:
+    #        - "type=inline"
     ports:
       - "3000:3000"
     environment:
@@ -20,14 +20,13 @@ services:
       - XAI_API_KEY=${XAI_API_KEY}
     volumes:
       - .:/app
-#      - /app/node_modules
-      - ai-pnpm-store:/pnpm/store
+    #      - /app/node_modules
+    #      - ai-pnpm-store:/pnpm/store # this creates pnpm store in project root and ~/.
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
-
 
   postgres:
     image: postgres:alpine
@@ -40,11 +39,10 @@ services:
     volumes:
       - ai-postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U user -d myapp" ]
+      test: ["CMD-SHELL", "pg_isready -U user -d myapp"]
       interval: 5s
       timeout: 5s
       retries: 5
-
 
   mysql:
     image: mysql:alpine
@@ -66,11 +64,10 @@ services:
       - redis_data:/data
     command: redis-server --save 20 1 --loglevel warning
     healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
+      test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 5s
       retries: 5
-
 
   adminer:
     image: adminer:alpine

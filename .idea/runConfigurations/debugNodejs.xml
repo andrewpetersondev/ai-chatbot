@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="debugNodejs" type="JavascriptDebugType" uri="http://localhost:3000" useFirstLineBreakpoints="true">
+  <configuration default="false" name="debugNodejs" type="JavascriptDebugType" focusToolWindowBeforeRun="true" uri="http://localhost:3000" useFirstLineBreakpoints="true">
     <method v="2" />
   </configuration>
 </component>
